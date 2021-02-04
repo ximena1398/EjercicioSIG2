@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" /> <head>
+        <link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+ <style>
+         #map {
+width: 100%;
+height: 600px;
+box-shadow: 5px 5px 5px #888; }
+</style>
+ </head>
+  <body>
+<div id="map"></div>
+<script>
+var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>' + 'contributors',
+maxZoom: 18
+});
+var map = L.map('map', { center: [1.61389, -75.6128], zoom: 13,
+layers: osm, scrollWheelZoom: false,
+});
+
+var markerUniamazonia = L.marker(
+       [1.6201693720933799, -75.60426356912865]
+).addTo(map)
+	.bindPopup('Universidad de la Amazonia')
+    .openPopup();
+
+var markerAlcaldia = L.marker(
+       [1.6150942,-75.6160003]
+).addTo(map)
+	.bindPopup('Alcaldía Florencia')
+    .openPopup();
+
+var circleAlcaldia = L.circle([1.6150942, -75.6160003], 500, {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5
+}).addTo(map);
+
+var markerPlazaSantander = L.marker(
+       [1.614922, -75.613264]
+).addTo(map)
+	.bindPopup('Plaza Santander')
+    .openPopup();
+
+ var polygonPlaza = L.polygon([
+       [1.615362, -75.613092],
+       [1.615179, -75.613640],
+       [1.614557, -75.613457],
+       [1.614718, -75.612888]
+]).addTo(map)
+
+var pointA = new L.LatLng(1.618276429623923, -75.60545073225583); 
+var pointB = new L.LatLng(1.6192018130057384, -75.60610300044429); 
+var pointC = new L.LatLng(1.6200891865629503, -75.60521965969366); 
+var pointD = new L.LatLng(1.6200950341652334, -75.60452205451958); 
+var pointE = new L.LatLng(1.6201693720933799, -75.60426356912865); 
+var latlngs = [pointA, pointB, pointC, pointD, pointE];
+var polyline = L.polyline(
+latlngs, {color: 'blue'}
+).addTo(map)
+.bindPopup ('Ruta: Mi casa - Uniamazonia');
+
+         L.control.scale().addTo(map);
+ </script>
+ </body>
+ </html>
